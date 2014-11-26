@@ -4,18 +4,18 @@ best <- function(state, outcome) {
 	
 	##Check that state and outcome are valid
 	library(datasets)
-	##states <- state.abb
+	states <- c(state.abb, "DC", "GU", "MP", "PR", "VI")
 	
 	##outcomes <- c("heart attack", "heart failure", "pneumonia")
 
-	validState <- state %in% state.abb
+	validState <- state %in% states
 	validOutcome <- outcome %in% c("heart attack", "heart failure", "pneumonia")
 
 	if (!validState)
-		return("Invalid state")
+		return("invalid state")
 
 	if (!validOutcome)
-		return("Invalid outcome")
+		return("invalid outcome")
 
 
 	##Return the hospital name in that state with the lowest 30-day death 
@@ -33,7 +33,7 @@ best <- function(state, outcome) {
 
 	variableName <- outcomesInState[,c(2,outcomePos)]
 	complete <- variableName[variableName[2] != "Not Available",]
-	ordered <- complete[order(complete[,2], decreasing = TRUE),]
+	ordered <- complete[order(complete[,2]),]
+	as.character(ordered[1,1])
 
-	ordered[1,1]
 }
