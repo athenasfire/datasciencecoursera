@@ -12,10 +12,10 @@ best <- function(state, outcome) {
 	validOutcome <- outcome %in% c("heart attack", "heart failure", "pneumonia")
 
 	if (!validState)
-		return("invalid state")
+		stop("invalid state")
 
 	if (!validOutcome)
-		return("invalid outcome")
+		stop("invalid outcome")
 
 
 	##Return the hospital name in that state with the lowest 30-day death 
