@@ -31,8 +31,9 @@ best <- function(state, outcome) {
 	else
 		return("Invalid outcome")
 
-	variableName <- outcomesInState[,c(2,outcomePos)]
-	complete <- variableName[variableName[2] != "Not Available",]
+	byState <- data[data$State == state,c(2,outcomePos)]
+	byState[,2] <- as.numeric(levels(byState[,2]))[byState[,2]]
+	complete <- byState[complete.cases(byState),]
 	ordered <- complete[order(complete[,2]),]
 	as.character(ordered[1,1])
 
